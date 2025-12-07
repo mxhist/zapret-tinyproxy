@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  zapret-proxy:
+    image: ghcr.io/mxhist/zapret-tinyproxy:latest
+    container_name: zapret-proxy
+    restart: unless-stopped
+    ports:
+      - "8888:8888/tcp"
+    environment:
+      - PROXY_PORT=8888
+      - ALLOWED_NETS=192.168.88.0/24
+      - TPWS_ARGS=--split-pos=1 --disorder --tlsrec=1 --mss=1460
